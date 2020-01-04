@@ -12,6 +12,7 @@ class Directory extends Component {
     }
 
     onCampsiteSelect(campsite){
+        //sets the selectedCampsite to campsite. Updates the state of props. 
         this.setState({selectedCampsite: campsite});
     }
 
