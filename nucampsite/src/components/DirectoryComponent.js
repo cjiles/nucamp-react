@@ -15,20 +15,6 @@ class Directory extends Component {
         this.setState({selectedCampsite: campsite});
     }
 
-    renderSelectedCampsite(campsite) {
-        if (campsite) {
-            return (
-                <Card>
-                    <CardImg top src={campsite.image} alt={campsite.name} />
-                    <CardBody>
-                        <CardTitle>{campsite.name}</CardTitle>
-                        <CardText>{campsite.description}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        }
-        return <div />;
-    }
 
     render() {
         // map creates an array of the Campsite objects 
