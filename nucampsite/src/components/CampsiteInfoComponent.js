@@ -23,9 +23,10 @@ class CampsiteInfo extends Component {
                 <div className="col-md-5 m-1">
                     <h4> Comments </h4>
                     {comments.map(comment => 
-                    <div key={comment.id}> 
-                    <p>{comment.text}</p>) <br /> 
-                    <p>Author: {comment.author}> Date: {comment.date} </p> </div>)}
+                        <div key={comment.id}> 
+                        {comment.text} <br /> 
+                        Author: {comment.author} Date: {comment.date} 
+                        </div>)}
                 </div>
             );
         };
@@ -37,7 +38,7 @@ class CampsiteInfo extends Component {
         if(this.props.campsite){
            return <div className="row">
                {this.renderCampsite(this.props.campsite)}
-               {this.renderComments(this.comments)}
+               {this.renderComments(this.props.campsite.comments)}
            </div>  
         }
         return (<div/>);
