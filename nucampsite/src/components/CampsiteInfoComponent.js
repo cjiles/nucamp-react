@@ -40,12 +40,16 @@ class CampsiteInfo extends Component {
 
     render () {
         if(this.props.campsite){
-           return <div className="row">
-               {/* calls the renderCampsite method and passes the campsite.js objects */}
-               {this.renderCampsite(this.props.campsite)}
-               {/* calls the renderComments method and passes the Comments array from the campsite.js file  */}
-               {this.renderComments(this.props.campsite.comments)}
-           </div>  
+           return(
+               <div className="container">
+                    <div className="row">
+                    {/* calls the renderCampsite method and passes the campsite.js objects */}
+                    {this.renderCampsite(this.props.campsite)}
+                    {/* calls the renderComments method and passes the Comments array from the campsite.js file  */}
+                    {this.renderComments(this.props.campsite.comments)}
+                     </div>  
+               </div>
+           ); 
         }
         return (<div/>);
     }
