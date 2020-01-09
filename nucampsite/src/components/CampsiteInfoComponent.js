@@ -44,7 +44,7 @@ function CampsiteInfo(props) {
                     {/* calls the renderCampsite method and passes the campsite.js objects */}
                     <RenderCampsite campsite = {props.campsite} />
                     {/* calls the renderComments method and passes the Comments array from the campsite.js file  */}
-                    <RenderComments comments = {props.campsite.comments} />
+                    <RenderComments comments = {props.comments} />
                      </div>  
                </div>
            ); 
