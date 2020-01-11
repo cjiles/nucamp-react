@@ -6,13 +6,13 @@ function RenderPartner({partner}){
     if(partner){
         return(
             <React.Fragment>
-               <div className="media" src={partner.image} alt={partner.name} />
-               <div className="media-body ml-5 mb-4">
-                    <div className="media-heading">
+               <Media object src={partner.image} alt={partner.name} width="150" />
+               <Media body className="ml-5 mb-4">
+                    <Media heading >
                         {partner.name}
-                    </div>
+                    </Media>
                  {partner.description}
-               </div>
+              </Media>
             </React.Fragment>
         );
     };
@@ -24,9 +24,9 @@ function About(props) {
     const partners = props.partners.map(partner => {
         return (
             // <h5>{partner.name}</h5>
-            <div className="media" tag="li" key={partner.id}>
-                <RenderPartner partner = {props.partner} />
-            </div>
+            <Media tag="li" key={partner.id}>
+                <RenderPartner partner = {partner} />
+            </Media>
         );
     });
 
