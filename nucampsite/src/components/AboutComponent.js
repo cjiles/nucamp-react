@@ -25,6 +25,7 @@ function About(props) {
         return (
             // <h5>{partner.name}</h5>
             <Media tag="li" key={partner.id}>
+                {/* Partner is being passed as a prop because it has already been rendered in the Main componenet. */}
                 <RenderPartner partner = {partner} />
             </Media>
         );
