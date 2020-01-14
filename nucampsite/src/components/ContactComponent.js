@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col, FormFeedback} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, 
+    Label, Input, Col, FormFeedback} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { render } from '@testing-library/react';
+
 
 class Contact extends Component {
 
