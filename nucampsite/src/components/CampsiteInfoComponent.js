@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button,
-    Modal, ModalHeader, ModalBody, Col, Row, Label } from 'reactstrap';
+    Modal, ModalHeader, ModalBody, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form'
 
@@ -39,17 +39,24 @@ function RenderComments({comments}){
     return(<div/>);
 }
 
+const required = val => val && val.length;
+const maxLength = len => val => !val || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
 
 class CommentForm extends Component{
     constructor(props) {
         super(props);
 
         this.state = {
-            isModalOpen:false
+            isModalOpen:false,
+            author:"",
+            touched: {
+                author:false,
+            }
         };
 
         this.toggleModal = this.toggleModal.bind(this);
-        this.handleComments = this.handleComments.bind(this);
+        this.Submit = this.handleSubmit.bind(this);
     }
     
     toggleModal() {
@@ -58,10 +65,9 @@ class CommentForm extends Component{
         });
     }
 
-    handleComments(event) {
-        alert(`Rating: ${this.rating.value} Name: ${this.author.value} Comment: ${this.text.value}`);
-        this.toggleModal();
-        event.preventDefault();
+    handleSubmit(values) {
+        console.log('Current state is: ' + JSON.stringify(values));
+        alert('Current state is: ' + JSON.stringify(values));
     }
     
     render(){
@@ -79,11 +85,11 @@ class CommentForm extends Component{
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={this.handleComments}>
+                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
                             <div className="form-group">
                                 <Label htmlFor="rating"> Rating </Label>
                                 <Control.select model=".rating" id="rating" name="rating"
-                                    className="form-control"  innerRef={input => this.rating = input}>
+                                    className="form-control">
                                     <option>Choose...</option>
                                     <option> 1 </option>
                                     <option> 2 </option>
@@ -97,15 +103,30 @@ class CommentForm extends Component{
                                 <Control.text model=".author" id="author" name="author"
                                     placeholder="Your Name"
                                     className="form-control" 
-                                    innerRef={input => this.author = input}
-                                    />
+                                    validators={{
+                                        required,
+                                        minLength: minLength(2),
+                                        maxLength: maxLength(15)
+                                    }}
+                                />
+                                <Errors
+                                    className="text-danger"
+                                    model=".author"
+                                    show="touched"
+                                    component="div"
+                                    messages={{
+                                        required:"Your name is required",
+                                        minLength:"Must be at least 2 characters",
+                                        maxLength: "Must be 15 characters or less"
+                                    }}
+                                />    
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="text"> Comment </Label>
                                 <Control.textarea model=".text" id="text" name="text" 
                                     rows= "6"
                                     className="form-control"
-                                    innerRef={input => this.text = input}
+                                    
                                 />
                             </div>
                             <div className="form-group>">
