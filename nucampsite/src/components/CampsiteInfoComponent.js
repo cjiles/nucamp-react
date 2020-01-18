@@ -48,11 +48,7 @@ class CommentForm extends Component{
         super(props);
 
         this.state = {
-            isModalOpen:false,
-            author:"",
-            touched: {
-                author:false,
-            }
+            isModalOpen:false
         };
 
         this.toggleModal = this.toggleModal.bind(this);
@@ -112,7 +108,6 @@ class CommentForm extends Component{
                                 <Errors
                                     className="text-danger"
                                     model=".author"
-                                    show="touched"
                                     component="div"
                                     messages={{
                                         required:"Your name is required",
