@@ -18,7 +18,7 @@ function RenderCampsite({campsite}){
 }
 
     //the parameter can be named anything.  The parameter is defined below in Render
-function RenderComments({comments}){
+function RenderComments({comments, addComment, campsiteId}){
     if(comments){
         return(
             <div className="col-md-5 m-1">
@@ -27,11 +27,12 @@ function RenderComments({comments}){
                     //return statement is not always needed.  It is implicit in the arrow function, but may be needed for more complex code because if not included it returns the first value
                     return (<div key={comment.id}> 
                         {comment.text} <br /> 
-                        Author: {comment.author}  Date: {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} 
+                        Author: {comment.author}  Date: {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))} <br />
+                        Rating: {comment.rating}
                         </div>  )}
                     )
                 }
-                <CommentForm />
+                <CommentForm campsiteId={campsiteId} addComment={addComment} />
             </div>
         );
     };
@@ -62,8 +63,8 @@ class CommentForm extends Component{
     }
 
     handleSubmit(values) {
-        console.log('Current state is: ' + JSON.stringify(values));
-        alert('Current state is: ' + JSON.stringify(values));
+        this.toggleModal();
+        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
     }
     
     render(){
@@ -156,8 +157,12 @@ function CampsiteInfo(props) {
                 {/* calls the renderCampsite method and passes the campsite.js objects */}
                 <RenderCampsite campsite = {props.campsite} />
                 {/* calls the renderComments method and passes the Comments array from the campsite.js file  */}
-                <RenderComments comments = {props.comments} />
-                    </div>  
+                <RenderComments 
+                    comments = {props.comments}
+                    addComment = {props.addComment}
+                    campsiteId = {props.campsite.id}
+                />
+                </div>  
             </div>
         ); 
     }
