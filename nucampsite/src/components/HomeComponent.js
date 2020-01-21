@@ -28,18 +28,18 @@ function Home(props){
     return (
         <div className="container">
             <div className="row">
-                <div className="col-md m-1">
-                    <RenderCard item={props.campsite} />
+              <div className="col-md m-1">
+                    <RenderCard 
+                        item={props.campsite} 
+                        isLoading={props.campsitesLoading}
+                        errMess={props.campsitesErrMess}
+                    /> 
                 </div>
                 <div className="col-md m-1">
                     <RenderCard item={props.promotion} />
                 </div>
                 <div className="col-md m-1">
-                    <RenderCard
-                        item={props.campsite}
-                        isLoading={props.campsitesLoading}
-                        errMess={props.campsitesErrMess}
-                    />
+                    <RenderCard item={props.partner}/>
                 </div>
             </div>
         </div>

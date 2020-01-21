@@ -45,8 +45,8 @@ class Main extends Component {
             );
         }
 
-        const CampsiteWithID = ({match}) => {
-            return(
+        const CampsiteWithId = ({match}) => {
+            return (
                 <CampsiteInfo 
                     campsite={this.props.campsites.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
                     isLoading={this.props.campsites.isLoading}
@@ -55,7 +55,7 @@ class Main extends Component {
                     addComment={this.props.addComment}
                 />
             );
-        }
+        };
 
         return (
             <div>
@@ -63,7 +63,7 @@ class Main extends Component {
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
-                    <Route path='/directory/:campsiteID' component={CampsiteWithID} />
+                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                     <Route exact path='/contactus' component={Contact} />
                     <Route exact path='/aboutus' render={() => <About partners={this.props.partners} />} />
                     <Redirect to='/home' />
