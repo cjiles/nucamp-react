@@ -19,17 +19,22 @@ function RenderPartner({partner}){
     return(<div/>);
 }
 
-function About(props) {
-
-    const partners = props.partners.map(partner => {
+function PartnerList(props){
+    const partners = props.partners.partners.map(partner => {
         return (
             // <h5>{partner.name}</h5>
             <Media tag="li" key={partner.id}>
                 {/* Partner is being passed as a prop because it has already been rendered in the Main componenet. */}
-                <RenderPartner partner = {partner} />
+                <RenderPartner partner={partner} />
             </Media>
         );
     });
+
+}
+
+function About(props) {
+
+   
 
     return (
         <div className="container">
